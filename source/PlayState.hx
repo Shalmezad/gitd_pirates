@@ -4,34 +4,34 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxText;
+import flixel.tile.FlxTilemap;
+import flixel.tile.FlxBaseTilemap.FlxTilemapAutoTiling;
 import flixel.ui.FlxButton;
-import flixel.util.FlxMath;
 
-/**
- * A FlxState which can be used for the actual gameplay.
- */
+import openfl.Assets;
+
+
 class PlayState extends FlxState
 {
-	/**
-	 * Function that is called up when to state is created to set it up. 
-	 */
+	private var map:FlxTilemap;
+
 	override public function create():Void
 	{
 		super.create();
+		map = new FlxTilemap();		
+		map.loadMap(Assets.getText("assets/data/map1.csv"), "assets/images/tileset.png", 20,20,FlxTilemapAutoTiling.OFF,0,1,2);
+		add(map);
+
+		var player:FlxSprite = new FlxSprite(40,40);
+		player.loadGraphic("assets/images/player1.png");
+		add(player);
 	}
 	
-	/**
-	 * Function that is called when this state is destroyed - you might want to 
-	 * consider setting all objects this state uses to null to help garbage collection.
-	 */
 	override public function destroy():Void
 	{
 		super.destroy();
 	}
 
-	/**
-	 * Function that is called once every frame.
-	 */
 	override public function update():Void
 	{
 		super.update();
