@@ -10,16 +10,15 @@ import flixel.ui.FlxButton;
 
 import openfl.Assets;
 
+import sprites.Player;
 
 class PlayState extends FlxState
 {
-	private static var TILE_WIDTH:Int = 20;
-	private static var TILE_HEIGHT:Int = 20;
-
 	private static var MAP_DATA:Xml = null;
 
 	private var currentMap:Xml = null;
 	private var map:FlxTilemap;
+	private var player:Player;
 
 	override public function create():Void
 	{
@@ -36,13 +35,10 @@ class PlayState extends FlxState
 			}
 		}
 		map = new FlxTilemap();		
-		map.loadMap(currentMap.get("data"), "assets/images/tileset.png", TILE_WIDTH,TILE_HEIGHT,FlxTilemapAutoTiling.OFF,0,1,2);
+		map.loadMap(currentMap.get("data"), "assets/images/tileset.png", Main.TILE_WIDTH, Main.TILE_HEIGHT,FlxTilemapAutoTiling.OFF,0,1,2);
 		add(map);
 
-		var player:FlxSprite = new FlxSprite();
-		player.x = Std.parseInt(currentMap.elementsNamed("player").next().get("x")) * TILE_WIDTH;
-		player.y = Std.parseInt(currentMap.elementsNamed("player").next().get("y")) * TILE_HEIGHT;
-		player.loadGraphic("assets/images/player1.png");
+		player = new Player(currentMap.elementsNamed("player").next());
 		add(player);
 	}
 	

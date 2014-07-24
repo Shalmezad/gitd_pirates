@@ -11,6 +11,9 @@ import states.PlayState;
 
 class Main extends Sprite 
 {
+	public static var TILE_WIDTH:Int = 20;
+	public static var TILE_HEIGHT:Int = 20;
+
 	var gameWidth:Int = 320; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var gameHeight:Int = 240; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var initialState:Class<FlxState> = PlayState; // The FlxState the game starts with.
