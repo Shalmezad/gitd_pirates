@@ -4,12 +4,15 @@ import flixel.FlxSprite;
 
 class Player extends FlxSprite
 {
-	public function new(playerXml:Xml):Void
+    public function new():Void
 	{
 		super();
-		x = Std.parseInt(playerXml.get("x")) * Main.TILE_WIDTH;
-		y = Std.parseInt(playerXml.get("y")) * Main.TILE_HEIGHT;
-		loadGraphic("assets/images/player1.png");
-
+		loadGraphic("assets/images/digger.png",true, 20,25);
+        this.animation.add("dig", [0,1,2,3],5,false);
 	}
+
+    public function dig()
+    {
+        this.animation.play("dig");
+    }
 }
